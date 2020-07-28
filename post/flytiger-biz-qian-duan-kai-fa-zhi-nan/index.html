@@ -1,102 +1,113 @@
-<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" >
 
-<title>Flytiger-Biz前端开发指南 | Rat</title>
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://rat1991.github.io/favicon.ico?v=1595934496827">
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    Flytiger-Biz前端开发指南 | Rat
+</title>
+<link rel="shortcut icon" href="https://rat1991.github.io/favicon.ico?v=1595935871373">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://rat1991.github.io/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://rat1991.github.io/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
+        
+</head>
 
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-
-
-
-    <meta name="description" content="侧边菜单动态生成
-前端生成侧边菜单需要通过 接口 /permit/permitMenu/listUserMenuTree获取菜单数据和权限列表进行生成。
-而调用listUserMenuTree接口前需要调用/selectDefaultTen..." />
-    <meta name="keywords" content="" />
-  </head>
-  <body>
-    <div id="app" class="main">
-
-      <div class="sidebar" :class="{ 'full-height': menuVisible }">
-  <div class="top-container" data-aos="fade-right">
-    <div class="top-header-container">
-      <a class="site-title-container" href="https://rat1991.github.io">
-        <img src="https://rat1991.github.io/images/avatar.png?v=1595934496827" class="site-logo">
-        <h1 class="site-title">Rat</h1>
-      </a>
-      <div class="menu-btn" @click="menuVisible = !menuVisible">
-        <div class="line"></div>
-      </div>
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://rat1991.github.io">
+                <img class="avatar" src="https://rat1991.github.io/images/avatar.png?v=1595935871373" alt="">
+            </a>
+            <div class="site-title">
+                <h1>
+                    Rat
+                </h1>
+            </div>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/post/about" class="menu">
+                                    关于
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
     </div>
-    <div>
-      
-        
-          <a href="/" class="site-nav">
-            首页
-          </a>
-        
-      
-        
-          <a href="/archives" class="site-nav">
-            归档
-          </a>
-        
-      
-        
-          <a href="/tags" class="site-nav">
-            标签
-          </a>
-        
-      
-        
-          <a href="/post/about" class="site-nav">
-            关于
-          </a>
-        
-      
-    </div>
-  </div>
-  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
-    <div class="social-container">
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    </div>
-    <div class="site-description">
-      温故而知新
-    </div>
-    <div class="site-footer">
-      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://rat1991.github.io/atom.xml" target="_blank">RSS</a>
-    </div>
-  </div>
 </div>
 
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
 
-      <div class="main-container">
-        <div class="content-container" data-aos="fade-up">
-          <div class="post-detail">
-            <h2 class="post-title">Flytiger-Biz前端开发指南</h2>
-            <div class="post-date">2020-06-15</div>
-            
-            <div class="post-content" v-pre>
-              <h2 id="侧边菜单动态生成">侧边菜单动态生成</h2>
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-detail main-container">
+                <!-- left -->
+                <div id="content" class="main-container-left">
+                    <article class="post i-card">
+                        <h2 class="post-title">
+                            Flytiger-Biz前端开发指南
+                        </h2>
+                        <div class="post-info">
+                            <time class="post-time">2020-06-15</time>
+                            
+                        </div>
+                        
+                                <div class="post-content">
+                                    <h2 id="侧边菜单动态生成">侧边菜单动态生成</h2>
 <p>前端生成侧边菜单需要通过 <a href="http://192.172.9.142:3000/project/22/interface/api/260"><code>接口 /permit/permitMenu/listUserMenuTree</code></a>获取菜单数据和权限列表进行生成。<br>
 而调用<code>listUserMenuTree接口</code>前需要调用<a href="">/selectDefaultTenant</a>来获取默认租户，流程如下：</p>
 <pre><code class="language-mermaid">   登录成功 --&gt; 调用获取默认租户 ---&gt; 调用获取菜单数据
@@ -236,45 +247,94 @@ Object.defineProperty(Vue.prototype, '$hasAuthority', {
 })
 </code></pre>
 
-            </div>
-            
-            
-              <div class="next-post">
-                <div class="next">下一篇</div>
-                <a href="https://rat1991.github.io/post/she-jiao-fen-xiang-pei-zhi/">
-                  <h3 class="post-title">
-                    社交分享配置
-                  </h3>
-                </a>
-              </div>
-            
-
-            
-
-          </div>
+                                </div>
+                    </article>
+                    <!--  -->
+                    
+                        <div class="next-post">
+                            <div class="next">下一篇</div>
+                            <a href="https://rat1991.github.io/post/she-jiao-fen-xiang-pei-zhi/">
+                                <h3 class="post-title">
+                                    社交分享配置
+                                </h3>
+                            </a>
+                        </div>
+                        
+                            <div id="disqus_thread"></div>
+                            <div id="gitalk-container"></div>
+                </div>
+                <!-- middle -->
+                <div class="main-container-middle"></div>
+                <!-- right -->
+                <div id="sidebar" class="main-container-right">
+                    
+                        <!-- toc -->
+                        
+    <div class="toc-card i-card ">
+        <div class="toc-title i-card-title">目录</div>
+        <div class="toc-content">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E4%BE%A7%E8%BE%B9%E8%8F%9C%E5%8D%95%E5%8A%A8%E6%80%81%E7%94%9F%E6%88%90">侧边菜单动态生成</a></li>
+</ul>
+</li>
+</ul>
 
         </div>
-      </div>
+        <script>
+            function locateCatelogList() {
+                /*获取文章目录集合,可通过:header过滤器*/
+                var alis = $('.post-content :header');
+                /*获取侧边栏目录列表集合**/
+                var sidebar_alis = $('.markdownIt-TOC a');
+                /*获取滚动条到顶部的距离*/
+                var scroll_height = $(window).scrollTop();
+                for (var i = 0; i < alis.length; i++) {
+                    /*获取锚点集合中的元素分别到顶点的距离*/
+                    var a_height = $(alis[i]).offset().top;
+                    if (a_height < scroll_height) {
+                        /*高亮显示*/
+                        sidebar_alis.removeClass('on');
+                        $(sidebar_alis[i]).addClass('on');
+                    }
+                }
+            }
+            $(function() {
+                /*绑定滚动事件 */
+                $(window).bind('scroll', locateCatelogList);
+            });
+        </script>
     </div>
+    
+                            
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-<script type="application/javascript">
+                </div>
 
-AOS.init();
 
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
 
+
+            </div>
+
+
+            <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://rat1991.github.io/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
 </script>
 
 
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
+    </script>
+    
+</body>
 
-
-
-
-  </body>
 </html>

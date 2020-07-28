@@ -1,120 +1,280 @@
-<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" >
 
-<title>Rat</title>
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://rat1991.github.io/favicon.ico?v=1595934496827">
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    Rat
+</title>
+<link rel="shortcut icon" href="https://rat1991.github.io/favicon.ico?v=1595935871373">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://rat1991.github.io/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://rat1991.github.io/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
+</head>
 
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-
-
-
-    <meta name="description" content="温故而知新">
-    
-  </head>
-  <body>
-    <div id="app" class="main">
-
-      <div class="sidebar" :class="{ 'full-height': menuVisible }">
-  <div class="top-container" data-aos="fade-right">
-    <div class="top-header-container">
-      <a class="site-title-container" href="https://rat1991.github.io">
-        <img src="https://rat1991.github.io/images/avatar.png?v=1595934496827" class="site-logo">
-        <h1 class="site-title">Rat</h1>
-      </a>
-      <div class="menu-btn" @click="menuVisible = !menuVisible">
-        <div class="line"></div>
-      </div>
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://rat1991.github.io">
+                <img class="avatar" src="https://rat1991.github.io/images/avatar.png?v=1595935871373" alt="">
+            </a>
+            <div class="site-title">
+                <h1>
+                    Rat
+                </h1>
+            </div>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/post/about" class="menu">
+                                    关于
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
     </div>
-    <div>
-      
-        
-          <a href="/" class="site-nav">
-            首页
-          </a>
-        
-      
-        
-          <a href="/archives" class="site-nav">
-            归档
-          </a>
-        
-      
-        
-          <a href="/tags" class="site-nav">
-            标签
-          </a>
-        
-      
-        
-          <a href="/post/about" class="site-nav">
-            关于
-          </a>
-        
-      
-    </div>
-  </div>
-  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
-    <div class="social-container">
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    </div>
-    <div class="site-description">
-      温故而知新
-    </div>
-    <div class="site-footer">
-      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://rat1991.github.io/atom.xml" target="_blank">RSS</a>
-    </div>
-  </div>
 </div>
 
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
 
-      <div class="main-container">
-        <div class="content-container" data-aos="fade-up">
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://rat1991.github.io/post/flytiger-biz-qian-duan-kai-fa-zhi-nan/">
-                  <h2 class="post-title">Flytiger-Biz前端开发指南</h2>
-                </a>
-                <div class="post-date">
-                  2020-06-15
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-container main-container">
+                <div id="content" class="main-container-left">
+                    
+        
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://rat1991.github.io/post/flytiger-biz-qian-duan-kai-fa-zhi-nan/">
+                        Flytiger-Biz前端开发指南
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-06-15</time>
+                    
                 </div>
-                <div class="post-abstract">
-                  
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            侧边菜单动态生成
+前端生成侧边菜单需要通过 接口 /permit/permitMenu/listUserMenuTree获取菜单数据和权限列表进行生成。
+而调用listUserMenuTree接口前需要调用/selectDefaultTenant来获取默认租户，流程如下：
+   登录成功 --&amp;gt; 调用获取默认租户 ---&amp;gt; 调用获取菜单数据
+
+获取到菜单数据后需要对数据进行处理生成前端路由（routes）数据，再根据路由routes数据去生成菜单组件。具体生成思路如下：
+/**
+ * 过滤菜单数据
+ * @param {Array} list -后台返回的菜单数据
+ * @param {Object} parent -缓存父级对象
+ * @returns {Array}
+ */
+function sortUserMenus(list, parent) {
+  const menus = []
+  const access = []
+  list.forEach(item =&amp;gt; {
+    if (item.category === 1) {
+      if (item.children) {
+        item.children = sortUserMenus(item.children, item)
+      }
+      menus.push(item)
+    } else {
+      access.push({ code: item.code, name: item.name })
+    }
+  })
+  if (parent &amp;amp;&amp;amp; access.length) {
+      // 把过滤出的权限列表保存在父节点
+    parent[&#39;_access&#39;] = access
+  }
+  return menus.length ? menus : null
+}
+
+以上函数主要是抽离菜单页面路由的权限列表，因为后端返回的数据是以菜单和页面按钮权限一起的树形结构，需要将页面按钮权限抽离处理。
+// 缓存生成的页面路由
+let cacheRouters = []
+/**
+ * 合并路由路径
+ * @param  {...any} arg -路径字符
+ */
+function resolvePath(...arg) {
+  return arg.map(url =&amp;gt; {
+    return url.split(&#39;/&#39;).filter(v =&amp;gt; v!==&#39;&#39;).join(&#39;/&#39;)
+  }).join(&#39;/&#39;)
+}
+/**
+ * routes生成器
+ * @param {*} menus -后端响应数据
+ * @param {*} parentPath -父节点路径
+ */
+function routesGenerator(menus, parentPath=&#39;/&#39;) {
+  return menus.map(item =&amp;gt; {
+    const isChild = item.children &amp;amp;&amp;amp; item.children.length
+    const isTop = item.parentId === &#39;0&#39;
+    const tpl = {
+      path: resolvePath(parentPath, item.code),
+      name: item.name,
+      meta: {
+        icon: item.icon || &#39;md-document&#39;,
+        hideInMenu: false,
+        notCache: true
+      },
+    }
+    if (!isTop) {
+      tpl.path = &#39;/&#39; + tpl.path
+      tpl.name = item.code
+      tpl.meta.title = item.name
+      // requireAuth为true表明该路由需要权限才能进入
+      tpl.meta.requireAuth = true
+      // 将按钮权限列表放置在前端路由的meta.authList属性上
+      if (item._access) {
+        tpl.meta.authList = item._access.map(item =&amp;gt; item.code)
+      }
+    }
+    // 判断路径是否为路由组件还是url
+    if (item.isOpen) {
+      tpl.meta.href = item.path
+    } else {
+      tpl.component = () =&amp;gt; isTop 
+      ? import(&#39;@/components/main&#39;) 
+      : import(`@/view/module/${resolvePath(item.path)}.vue`)
+    }
+    // 带有子节点递归处理
+    if (isChild) {
+      tpl.children = routesGenerator(item.children, tpl.path)
+      tpl.redirect = tpl.children[0].path
+    }
+    return tpl
+  })
+}
+/**
+ * 主要为生成的routes后加入404页面路由
+ * @param {*} menus -后端响应数据
+ */
+function createMenuRoutes(menus) {
+  const unableCatchRoute = {
+    path: &#39;/404&#39;,
+    name: &#39;error_404&#39;,
+    meta: {
+      hideInMenu: true
+    },
+    component: () =&amp;gt; import(&#39;@/view/error-page/404.vue&#39;)
+  }
+  return [...routesGenerator(menus), unableCatchRoute]
+}
+
+function initRoutes(menus) {
+  if (cacheRouters.length) return
+  cacheRouters = createMenuRoutes(menus)
+  router.onReady(() =&amp;gt; {
+    // 将生成的routes数据添加在前端路由表
+    router.addRoutes(cacheRouters)
+    routes.push(...cacheRouters)
+    store.commit(&#39;setRoutesReady&#39;)
+  })
+}
+
+通过调用initRoutes()方法将生成的routes数据动态加载的路由中。
+最后生成的数据如下：
+
+其中authList为当前路由的按钮权限列表，这样我们可以通过页面组件内的this.$route去获取到它，从而可以根据列出的权限去控制页面按钮的展示。
+权限列表中带有VIEW、ADD、EDIT、DELETE、ENABLE等分别查看、添加、编辑、删除、禁用的标识，根据标识去控制相应权限的按钮显示。
+一般情况下可通过定义全局方法去统一判断：
+/**
+ * 按钮全新控制
+ *authorities 多个用,号隔开
+ * v-show=&amp;quot;$hasAuthority(&#39;systemUserCreate&#39;)&amp;quot;
+ * @param authorities
+ * @returns {boolean}
+ */
+Object.defineProperty(Vue.prototype, &#39;$hasAuthority&#39;, {
+  value(authorities, isCustom) {
+    if (!authorities) return false
+    const { authList= [] } = this.$route.meta;
+    if(!isCustom)  authorities = &#39;flytigerbutton&#39; + authorities;
+    return authList.toString().toLocaleLowerCase().indexOf(authorities.toLocaleLowerCase()) &amp;gt; -1 ;
+  },
+  writable: false
+})
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://rat1991.github.io/post/flytiger-biz-qian-duan-kai-fa-zhi-nan/">Read More ~</a>
+                            </div>
                 </div>
-              </div>
-              
             </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://rat1991.github.io/post/she-jiao-fen-xiang-pei-zhi/">
-                  <h2 class="post-title">社交分享配置</h2>
-                </a>
-                <div class="post-date">
-                  2020-06-15
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://rat1991.github.io/post/she-jiao-fen-xiang-pei-zhi/">
+                        社交分享配置
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-06-15</time>
+                    
                 </div>
-                <div class="post-abstract">
-                  <h2 id="微信分享">微信分享</h2>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                    <div class="post-content-abstract">
+                                        <h2 id="微信分享">微信分享</h2>
 <p>调用微信JSSDK需要先做<a href="https://mp.weixin.qq.com/">公众账号</a>配置，简单来说有以下步骤:</p>
 <ol>
 <li>在认证的公众账号上绑定一个已备案的域名</li>
@@ -136,61 +296,104 @@
 });
 </code></pre>
 
+                                    </div>
+                                    
+                                            <a class="btn btn-text" href="https://rat1991.github.io/post/she-jiao-fen-xiang-pei-zhi/">Read More ~</a>
+                            </div>
                 </div>
-              </div>
-              
             </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://rat1991.github.io/post/hello-gridea/">
-                  <h2 class="post-title">Hello Gridea</h2>
-                </a>
-                <div class="post-date">
-                  2018-12-12
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://rat1991.github.io/post/hello-gridea/">
+                        Hello Gridea
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-12-12</time>
+                    
+                        <a href="https://rat1991.github.io/tag/54mnUT9VW/" class="post-tag i-tag
+                            i-tag-">
+            #Gridea
+        </a>
+                        
                 </div>
-                <div class="post-abstract">
-                  <p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
+                <div class="post-article">
+                    
+                        <a href="https://rat1991.github.io/post/hello-gridea/" class="post-feature-image" style="background-image:url(https://rat1991.github.io/post-images/hello-gridea.png) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                    <div class="post-content-abstract">
+                                        <p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
 ✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
 
+                                    </div>
+                                    
+                                            <a class="btn btn-text" href="https://rat1991.github.io/post/hello-gridea/">Read More ~</a>
+                            </div>
                 </div>
-              </div>
-              
-                <a class="right" href="https://rat1991.github.io/post/hello-gridea/">
-                  <div class="feature-container" style="background-image: url('https://rat1991.github.io/post-images/hello-gridea.png')">
-                  </div>
-                </a>
-              
             </article>
-          
+            
+                <!-- 翻页 -->
+                
+                </div>
+                <!--  -->
+                <div class="main-container-middle"></div>
+                <!--  -->
+                <div id="sidebar" class="main-container-right">
 
-          <div class="pagination-container">
-  
-  
-</div>
+                    <!-- 个人信息 -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar" style="background-image: url(https://rat1991.github.io/images/avatar.png?v=1595935871373)">
+        </div>
+        <h1 class="id_card-title">
+            Rat
+        </h1>
+        <h2 class="id_card-description">
+            温故而知新
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                    <!-- twitter -->
+                    
+                            <!-- weibo -->
+                            
+                                    <!-- facebook -->
+                                    
 
         </div>
-      </div>
     </div>
+    
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-<script type="application/javascript">
+                        <!-- 公告栏 -->
+                        
 
-AOS.init();
+                </div>
+            </div>
 
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
 
+
+            <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://rat1991.github.io/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
 </script>
 
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
+    </script>
+</body>
 
-
-
-
-
-  </body>
 </html>
