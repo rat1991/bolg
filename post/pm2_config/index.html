@@ -1,0 +1,317 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    了解pm2进程管理的配置与使用 | Rat
+</title>
+<link rel="shortcut icon" href="https://rat1991.github.io/favicon.ico?v=1608855844329">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://rat1991.github.io/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://rat1991.github.io/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
+
+        
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://rat1991.github.io">
+                <img class="avatar" src="https://rat1991.github.io/images/avatar.png?v=1608855844329" alt="">
+            </a>
+            <div class="site-title">
+                <h1>
+                    Rat
+                </h1>
+            </div>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/post/about" class="menu">
+                                    关于
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-detail main-container">
+                <!-- left -->
+                <div id="content" class="main-container-left">
+                    <article class="post i-card">
+                        <h2 class="post-title">
+                            了解pm2进程管理的配置与使用
+                        </h2>
+                        <div class="post-info">
+                            <time class="post-time">2020-12-24</time>
+                            
+                                <a href="https://rat1991.github.io/tag/UHbDuSb2l/" class="post-tag i-tag
+                            i-tag-success">
+                            #node
+                        </a>
+                                
+                                <a href="https://rat1991.github.io/tag/ZHW7BaYDxH/" class="post-tag i-tag
+                            i-tag-banana">
+                            #pm2
+                        </a>
+                                
+                        </div>
+                        
+                            <div class="post-feature-image" style="background-image: url('https://rat1991.github.io/post-images/pm2_config.png')"></div>
+                            
+                                <div class="post-content">
+                                    <h1 id="概述">概述</h1>
+<p>PM2是一个带有负载均衡功能的Node应用的进程管理，允许你的node应用保持存活，重新加载无需停机。</p>
+<h1 id="安装">安装</h1>
+<p><code>npm install pm2 -g</code></p>
+<h1 id="命令概述">命令概述</h1>
+<pre><code>&lt;!-- more --&gt;
+
+# 常用
+pm2 start app.js                # 启动 守护进程 并且 重启应用 (Node)
+pm2 start app.py               # 启动 守护进程 并且 重启应用 (Python)
+pm2 start npm -- start       # 启动 守护进程 并且 重启应用
+
+# 集群模式 (仅限Node.js)
+pm2 start app.js -i 4           # 在集群模式下启动4个应用实例
+                                        # 它将加载平衡网络查询到每个应用程
+pm2 reload all                    # 0 秒停机重新加载
+pm2 scale [app-name] 10   # 扩展 10个进程到集群中
+
+# 进程监控
+pm2 list                      # 使用PM2列出所有的过程
+pm2 monit                     # 显示应用程序的内存和CPU的使用情况
+pm2 show [app-name]           # 显示[app-name]应用程序的信息
+
+# 日志管理
+pm2 logs                      # 显示所有应用程序的日志
+pm2 logs [app-name]           # 显示特定应用程序的日志
+pm2 logs --json               # JSON格式的日志
+pm2 flush
+pm2 reloadLogs
+
+# 过程状态管理
+pm2 start app.js --name=&quot;api&quot;    # 启动应用程序并命名它为“api”
+pm2 start app.js -- -a 34           # 启动应用程序和传递选项“-a 34”作为参数
+pm2 start app.js --watch            # 监控文件变化并重启
+pm2 start script.sh                     # 启动bash脚本
+pm2 start app.json                     # 通过配置文件启动应用
+pm2 reset [app-name]                # 重置所有计数器
+pm2 stop all                  # 停止所有的应用程序
+pm2 stop 0                    # 停止进程id为0的应用
+pm2 restart all               # 重新启动所有的应用程序
+pm2 gracefulReload all        # 在集群模式下优雅重载所有应用程序
+pm2 delete all                # 杀死和删除所有应用程序
+pm2 delete 0                  # 杀死进程id为0的应用 
+
+# 启动/启动管理
+pm2 startup                    # 检测系统初始化，生成和启动配置PM2 boot
+pm2 save                       # 保存当前进程列表
+pm2 resurrect                # 恢复以前保存进程
+pm2 unstartup               # 禁用和删除启动系统
+pm2 update                  # 保存进程, 杀死 PM2 并 恢复进程
+pm2 generate               # 生成JSON配置文件示例
+
+# 部署
+pm2 deploy app.json prod setup    # 设置 &quot;prod&quot; 远程服务器
+pm2 deploy app.json prod             # 更新 &quot;prod&quot; 远程服务器
+pm2 deploy app.json prod revert 2 # 回复2 &quot;prod&quot; 远程服务器
+
+# 系统模块
+pm2 module:generate [name]    # 以[name]生成示例模块
+pm2 install pm2-logrotate        # 安装模块（这里有一个日志轮换系统）
+pm2 uninstall pm2-logrotate    # 卸载模块
+pm2 publish                           # 增加版本号，git push和NPM发布
+</code></pre>
+<h1 id="配置文件">配置文件</h1>
+<p>PM2可使用配置文件进行启动，在package.json 的scripts里添加 &quot;start&quot;: &quot;pm2 start pm2-config.json&quot;这一段代码这样我们就可以使用 npm run start来启动我们的Node项目。</p>
+<h3 id="配置文件详细介绍">配置文件详细介绍</h3>
+<pre><code class="language-json">{
+    &quot;apps&quot;: {
+        &quot;name&quot;: &quot;wuwu&quot;,                             // 项目名          
+        &quot;script&quot;: &quot;./bin/www&quot;,                      // 执行文件
+        &quot;cwd&quot;: &quot;./&quot;,                                // 根目录
+        &quot;args&quot;: &quot;&quot;,                                 // 传递给脚本的参数
+        &quot;interpreter&quot;: &quot;&quot;,                          // 指定的脚本解释器
+        &quot;interpreter_args&quot;: &quot;&quot;,                     // 传递给解释器的参数
+        &quot;watch&quot;: true,                              // 是否监听文件变动然后重启
+        &quot;ignore_watch&quot;: [                           // 不用监听的文件
+            &quot;node_modules&quot;,
+            &quot;logs&quot;
+        ],
+        &quot;exec_mode&quot;: &quot;cluster_mode&quot;,                // 应用启动模式，支持fork和cluster模式
+        &quot;instances&quot;: 4,                             // 应用启动实例个数，仅在cluster模式有效 默认为fork；或者 max
+        &quot;
+        &quot;merge_logs&quot;: true,                         // 设置追加日志而不是新建日志
+        &quot;log_date_format&quot;: &quot;YYYY-MM-DD HH:mm:ss&quot;,   // 指定日志文件的时间格式
+        &quot;min_uptime&quot;: &quot;60s&quot;,                        // 应用运行少于时间被认为是异常启动
+        &quot;max_restarts&quot;: 30,                         // 最大异常重启次数，即小于min_uptime运行时间重启次数；
+        &quot;autorestart&quot;: true,                        // 默认为true, 发生异常的情况下自动重启
+        &quot;cron_restart&quot;: &quot;&quot;,                         // crontab时间格式重启应用，目前只支持cluster模式;
+        &quot;restart_delay&quot;: &quot;60s&quot;                      // 异常重启情况下，延时重启时间
+        &quot;env&quot;: {
+           &quot;NODE_ENV&quot;: &quot;production&quot;,                // 环境参数，当前指定为生产环境 process.env.NODE_ENV
+           &quot;REMOTE_ADDR&quot;: &quot;爱上大声地&quot;               // process.env.REMOTE_ADDR
+        },
+        &quot;env_dev&quot;: {
+            &quot;NODE_ENV&quot;: &quot;development&quot;,              // 环境参数，当前指定为开发环境 pm2 start app.js --env_dev
+            &quot;REMOTE_ADDR&quot;: &quot;&quot;
+        }
+    }
+}    
+</code></pre>
+
+                                </div>
+                    </article>
+                    <!--  -->
+                    
+                        <div class="next-post">
+                            <div class="next">下一篇</div>
+                            <a href="https://rat1991.github.io/post/hello-gridea/">
+                                <h3 class="post-title">
+                                    Hello Gridea
+                                </h3>
+                            </a>
+                        </div>
+                        
+                            <div id="disqus_thread"></div>
+                            <div id="gitalk-container"></div>
+                </div>
+                <!-- middle -->
+                <div class="main-container-middle"></div>
+                <!-- right -->
+                <div id="sidebar" class="main-container-right">
+                    
+                        <!-- toc -->
+                        
+    <div class="toc-card i-card ">
+        <div class="toc-title i-card-title">目录</div>
+        <div class="toc-content">
+            <ul class="markdownIt-TOC">
+<li><a href="#%E6%A6%82%E8%BF%B0">概述</a></li>
+<li><a href="#%E5%AE%89%E8%A3%85">安装</a></li>
+<li><a href="#%E5%91%BD%E4%BB%A4%E6%A6%82%E8%BF%B0">命令概述</a></li>
+<li><a href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">配置文件</a><br>
+*
+<ul>
+<li><a href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E7%BB%86%E4%BB%8B%E7%BB%8D">配置文件详细介绍</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+        <script>
+            function locateCatelogList() {
+                /*获取文章目录集合,可通过:header过滤器*/
+                var alis = $('.post-content :header');
+                /*获取侧边栏目录列表集合**/
+                var sidebar_alis = $('.markdownIt-TOC a');
+                /*获取滚动条到顶部的距离*/
+                var scroll_height = $(window).scrollTop();
+                for (var i = 0; i < alis.length; i++) {
+                    /*获取锚点集合中的元素分别到顶点的距离*/
+                    var a_height = $(alis[i]).offset().top;
+                    if (a_height < scroll_height) {
+                        /*高亮显示*/
+                        sidebar_alis.removeClass('on');
+                        $(sidebar_alis[i]).addClass('on');
+                    }
+                }
+            }
+            $(function() {
+                /*绑定滚动事件 */
+                $(window).bind('scroll', locateCatelogList);
+            });
+        </script>
+    </div>
+    
+                            
+
+                </div>
+
+
+
+
+            </div>
+
+
+            <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://rat1991.github.io/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
+    </script>
+    
+</body>
+
+</html>
